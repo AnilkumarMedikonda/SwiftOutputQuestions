@@ -339,7 +339,7 @@ let parentType: Parent.Type = Child.self
 parentType.greet()
 parentType.welcome()
 
- */
+
 
 
 // Question 11
@@ -360,3 +360,37 @@ class Test {
 
 let obj = Test()
 obj.value = 20
+
+ */
+
+// Question 12
+
+
+class Person: Equatable {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id: Int
+    
+    init(id: Int) {
+        self.id = id
+    }
+}
+
+let p1 = Person(id: 1)
+let p2 = Person(id: 1)
+let p3 = p1
+
+print(p1 == p2)
+print(p1 === p2)
+print(p1 === p3)
+
+/*
+
+| Operator | Meaning            | Used For               |
+| -------- | ------------------ | ---------------------- |
+| `==`     | Value equality     | Structs + custom logic |
+| `===`    | Reference identity | Classes only           |
+
+*/
