@@ -361,10 +361,7 @@ class Test {
 let obj = Test()
 obj.value = 20
 
- */
-
 // Question 12
-
 
 class Person: Equatable {
     static func == (lhs: Person, rhs: Person) -> Bool {
@@ -394,3 +391,80 @@ print(p1 === p3)
 | `===`    | Reference identity | Classes only           |
 
 */
+
+ */
+
+// Question 13
+
+func test() -> Int {
+    var x = 1
+    
+    defer {
+        x  += 1
+        print("First defer: \(x)")
+    }
+    
+    defer {
+        x  += 1
+        print("Second defer: \(x)")
+    }
+    return x
+}
+
+print("Returned : \(test())")
+
+
+// Question 14
+@MainActor
+struct Counter {
+    static var count = 0
+
+    init() {
+        Counter.count += 1
+    }
+
+    mutating func increment() {
+        Counter.count += 1
+    }
+}
+
+var c1 = Counter()  // count = 1
+var c2 = Counter()  // count = 2
+
+
+// Quetion 15
+
+@MainActor
+struct Test {
+    static var value: Int = {
+        print("Initlising  Value")
+        return   10
+    }()
+    
+    static var computed: Int = {
+        print("Accessing computed")
+        return  value + 5
+    }()
+}
+print(Test.computed)
+print(Test.computed)
+
+
+
+// Quetion 16
+
+@MainActor
+struct CounterTwo {
+    var value = 0
+}
+
+@MainActor
+func test() async {
+    let counter = CounterTwo()
+    
+    Task {
+        counter.value  = 10
+    }
+    
+    print(counter.value)
+}
