@@ -118,7 +118,7 @@ print(number)
 
 // Question 5
 
-
+/*
 actor AnotherCounter {
     
     var value = 0
@@ -148,6 +148,8 @@ Task {
     try? await Task.sleep(nanoseconds: 2_000_000)
     print(await anothercounter.value)
 }
+
+*/
 
 /*
 
@@ -392,7 +394,6 @@ print(p1 === p3)
 
 */
 
- */
 
 // Question 13
 
@@ -467,4 +468,48 @@ func test() async {
     }
     
     print(counter.value)
+}
+*/
+
+/*
+@MainActor
+struct TestAsync {
+    var amount = 0
+    
+    func updateAmount() {
+        let newAmount = amount
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.amount = newAmount + 1
+        }
+    }
+}
+
+var testAsync = TestAsync()
+testAsync.updateAmount()
+testAsync.updateAmount()
+
+print(testAsync.amount)
+
+*/
+
+
+
+// Quetion 17
+
+final class Logger {
+    var message: String = ""
+}
+
+
+struct AppState {
+    var count: Int
+    var logger: Logger
+}
+
+
+func test(state: AppState) async  {
+    Task.detached {
+        print(state.count)
+    }
 }
