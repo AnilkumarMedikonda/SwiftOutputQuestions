@@ -491,11 +491,6 @@ testAsync.updateAmount()
 
 print(testAsync.amount)
 
-*/
-
-
-
-// Quetion 17
 
 final class Logger {
     var message: String = ""
@@ -513,3 +508,45 @@ func test(state: AppState) async  {
         print(state.count)
     }
 }
+
+*/
+
+
+
+// Quetion 18
+
+
+struct Container {
+    var items: NSMutableArray
+}
+let array = NSMutableArray(array: [1,2,3])
+var c1 = Container(items: array)
+var c2 = c1
+c2.items.add(4)
+
+print(c1.items)
+print(c2.items)
+
+
+
+// Quetion 19
+
+protocol Incrementable {
+    mutating func increatement()
+}
+
+struct Counter: Incrementable {
+    var value = 0
+    mutating func increatement() {
+        value += 1
+    }
+}
+
+func increment(_ value: inout Incrementable) {
+    value.increatement()
+}
+
+var counter  = Counter()
+increment(&counter)
+
+print(counter.value)
