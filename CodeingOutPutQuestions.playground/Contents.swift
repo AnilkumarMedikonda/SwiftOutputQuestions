@@ -512,6 +512,7 @@ func test(state: AppState) async  {
 */
 
 
+/*
 
 // Quetion 18
 
@@ -550,3 +551,65 @@ var counter  = Counter()
 increment(&counter)
 
 print(counter.value)
+
+ */
+
+
+protocol Shape {}
+
+struct Circule: Shape {
+    
+}
+
+func draw(_ shape: Shape) {
+    print("Shape version")
+}
+
+func draw<T: Shape>(_ shape: T) {
+    print("Generic version")
+}
+
+
+let c = Circule()
+draw(c)
+
+let s: Shape = Circule()
+draw(s)
+
+
+protocol Vechcile {
+    func start()
+}
+
+extension Vechcile {
+    func start() {
+        print("Vehcile is staring")
+    }
+    
+    func stop() {
+        print("Vehcile is stopping")
+    }
+}
+
+
+final class Car: Vechcile {
+    func start() {
+         print("Car is starting")
+    }
+    
+    func stop() {
+        print("Car is stopping")
+    }
+}
+
+
+let car: Car = Car()
+let vehicle: Vechcile = car
+
+car.start()
+car.stop()
+
+vehicle.start()
+vehicle.stop()
+
+
